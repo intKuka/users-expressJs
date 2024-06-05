@@ -1,0 +1,19 @@
+{
+  "name": "users-expressjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "npm i && node --env-file=.env app.js",
+    "dev": "npm i && node --watch --trace-warnings --env-file=example.env app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cls-rtracer": "^2.6.3",
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7"
+  }
+}
