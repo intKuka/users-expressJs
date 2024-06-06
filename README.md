@@ -3,6 +3,11 @@
 ## Starting
 To start in non-dev environment you need to create .env file with all configuration settings (easiest way is to copy example.env and rename it into .env).
 
+Don't forget to enter the root folder :)
+```
+cd users-expressJs
+```
+
 **DEV**
 ```
 npm run dev
