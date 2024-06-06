@@ -1,5 +1,5 @@
 import { json, urlencoded, Router } from 'express';
-import usersRouter from './usersRoutes/usersRouter.js';
+import usersRouter from './routes/users/usersRouter.js';
 
 const apiRouter = Router();
 

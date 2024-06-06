@@ -1,8 +1,8 @@
 import express from 'express';
 import { expressMiddleware } from 'cls-rtracer';
-import apiRouter from './routes/api/apiRouter.js';
 import logRequest from './middleware/logRequest.js';
 import errorHandler from './middleware/errorHandler.js';
+import apiRouter from './api/apiRouter.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
