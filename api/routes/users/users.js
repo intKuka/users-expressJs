@@ -1,6 +1,6 @@
 import { default as db } from '../../../db/sqlite3/sqlite3.js';
 import HttpError from '../../../helpers/customErrors/HttpError.js';
-import { checkSchema, validationResult } from 'express-validator';
+import { matchedData, validationResult } from 'express-validator';
 import ValidationError from '../../../helpers/customErrors/ValidationError.js';
 
 // @desc Get all users
@@ -32,12 +32,15 @@ function getById(req, res, next) {
 // @desc Create user using json body
 // @route POST /api/users
 function postOne(req, res, next) {
-  // FIXME: validate user's input
-  const { name, age } = req.body;
+  const result = validationResult(req);
+  if (!result.isEmpty()) {
+    return next(new ValidationError(result));
+  }
 
-  db.createUser( {name, age } )
+  const user = matchedData(req);
+  db.createUser(user)
     .then(userId => {
-      res.status(201).json(userId);
+      res.status(201).json({ userId: userId });
     })
     .catch(next);
 }
@@ -51,6 +54,7 @@ function patchById(req, res, next) {
   }
 
   const id = parseInt(req.params.id);
+  const newUser = matchedData(req, { locations: ['body'] });
   db.updateUser(id, newUser)
     .then(() => {
       res.sendStatus(200);
@@ -67,7 +71,7 @@ function deleteById(req, res, next) {
   }
 
   const id = parseInt(req.params.id);
-  db.deleteById(id)
+  db.removeUser(id)
     .then(() => {
       res.sendStatus(200);
     })

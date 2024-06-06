@@ -92,6 +92,8 @@ export default {
   listUsers,
   findUserById,
   createUser,
+  updateUser,
+  removeUser
 };
 
 

@@ -6,7 +6,6 @@ const ValidationError = class extends Error {
   const message = result
     .formatWith(err => err.msg)
     .mapped();
-    console.log(message);
 
    super();  
    this.name = this.constructor.name;
